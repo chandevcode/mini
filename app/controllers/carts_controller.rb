@@ -13,4 +13,14 @@ class CartsController < ApplicationController
 
     redirect_back fallback_location: root_path
   end
+
+  def remove
+    id = params[:id].to_s
+
+    if session[:cart].present?
+      session[:cart].delete(id)
+    end
+
+    redirect_back fallback_location: root_path, notice: "Item removed"
+  end
 end
