@@ -1,0 +1,52 @@
+<%= form_with(model: menu_item, class: "contents") do |form| %>
+  <% if menu_item.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(menu_item.errors.count, "error") %> prohibited this menu_item from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% menu_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.collection_select :category_id, 
+      Category.all, 
+      :id, 
+      :name, 
+      { prompt: "Select Category" },
+      class: [
+        "select select-bordered w-full mt-2",
+        menu_item.errors[:category_id].any? ? 
+        "select-error border-red-500 focus:outline-red-600" :
+        "border-gray-300 focus:outline-blue-600"
+      ]
+    %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": menu_item.errors[:name].none?, "border-red-400 focus:outline-red-600": menu_item.errors[:name].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": menu_item.errors[:description].none?, "border-red-400 focus:outline-red-600": menu_item.errors[:description].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :price %>
+    <%= form.number_field :price, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": menu_item.errors[:price].none?, "border-red-400 focus:outline-red-600": menu_item.errors[:price].any?}] %>
+  </div>
+
+  <div class="my-5 flex items-center gap-2">
+    <%= form.label :is_available %>
+    <%= form.checkbox :is_available, class: ["block shadow-sm rounded-md border order-first h-5 w-5", {"border-gray-400 focus:outline-blue-600": menu_item.errors[:is_available].none?, "border-red-400 focus:outline-red-600": menu_item.errors[:is_available].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
