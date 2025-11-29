@@ -2,6 +2,14 @@ puts "Clearing old data..."
 MenuItem.delete_all
 Category.delete_all
 
+puts "create USer..."
+
+User.create!(
+  email_address: "test@mail.com",
+  password_digest: "password",
+  password_confirmation: "password"
+)
+
 puts "Creating categories..."
 categories = [
   "Coffee",
