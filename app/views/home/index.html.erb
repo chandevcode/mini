@@ -80,7 +80,7 @@
                           Total: Rp <%= session[:cart].sum { |_, item| item["qty"] * item["price"] } %>
                         </div>
 
-                        <a href="/checkout" class="btn btn-primary w-full">Checkout</a>
+                        <%= button_to "checkout", checkout_path, method: :post, class: "btn btn-primary w-full"  %>
                       </div>
                     <% else %>
                       <p class="opacity-70">Cart empty</p>
