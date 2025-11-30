@@ -70,3 +70,6 @@ gem "openssl", "~> 3.3"
 gem "faker", "~> 3.5"
 
 gem "pundit", "~> 2.5"
+
+gem "ransack", "~> 4.4"
+gem "kaminari", "~> 1.2"

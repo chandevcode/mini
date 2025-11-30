@@ -6,13 +6,17 @@
       <div class="lg:col-span-2 space-y-4">
 
         <!-- Search -->
-        <input 
-           type="text" 
-           placeholder="Search menu..." 
-           class="input input-bordered w-full"
-           >
+        <div class="mb-4">
+          <%= search_form_for @q, url: root_path, method: :get, class: "flex gap-2" do |f| %>
+            <%= f.search_field :name_cont,
+              class: "input input-bordered w-full" %>
 
-           <!-- Menu Grid -->
+            <%= f.submit "Search", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+
+
+        <!-- Menu Grid -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           <% @menus.each do |menu| %>
             <div class="card bg-base-100 shadow hover:shadow-lg transition">

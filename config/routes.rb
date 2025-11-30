@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :menu_items
+  end
+
   resource :session
   resources :passwords, param: :token
   resources :menu_items
@@ -9,8 +13,8 @@ Rails.application.routes.draw do
 
   post "carts/add/:id", to: "carts#add", as: "add_to_cart"
   post "/checkout", to: "orders#create", as: "checkout"
-
   delete "carts/remove/:id", to: "carts#remove", as: "remove_cart"
+
   root "home#index"
 
 end
