@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
 
     # clear cart
     session[:cart] = {}
-    redirect_to root_path, notice: "Order Created"
+      flash[:notice] = "Transaction Success"
+    redirect_to root_path
   end
 end
