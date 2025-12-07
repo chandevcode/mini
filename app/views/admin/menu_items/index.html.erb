@@ -1,4 +1,65 @@
-<div>
-  <h1 class="font-bold text-4xl">Admin::MenuItems#index</h1>
-  <p>Find me in app/views/admin/menu_items/index.html.erb</p>
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-evenly items-center mb-6">
+    <h1 class="text-4xl font-bold text-gray-900">Menu Items</h1>
+    <!-- Search -->
+    <div class="mb-4">
+      <%= search_form_for @q, url: admin_menu_items_path, method: :get, class: "flex gap-2" do |f| %>
+        <%= f.search_field :name_cont,
+          class: "input input-bordered w-full" %>
+
+        <%= f.submit "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <%= link_to "Add menu item", new_admin_menu_item_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Category</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Description</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Price</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Available</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <% @menu_items.each do |menu_item| %>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900"><%= menu_item.name %></div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-700"><%= menu_item.category.name %></div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-sm text-gray-700 max-w-xs truncate"><%= menu_item.description %></div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900 font-semibold">
+                  <%= number_to_currency(menu_item.price.to_f / 100) %>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <% if menu_item.is_available %>
+                  <span class="badge badge-success badge-sm">Available</span>
+                <% else %>
+                  <span class="badge badge-error badge-sm">Unavailable</span>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                <%#= link_to "Show", admin_menu_item, class: "btn btn-ghost btn-sm" %>
+                <%= link_to "Edit", edit_admin_menu_item_path(menu_item), class: "btn btn-outline btn-sm" %>
+                <%= button_to "Delete", admin_menu_item_path(menu_item), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-error btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :menu_items
-  end
-
   resource :session
   resources :passwords, param: :token
-  resources :menu_items
+  #resources :menu_items
   get "home/index"
   resources :categories
   #resources :orders, only: [:show]
@@ -17,4 +13,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  namespace :admin do
+    resources :menu_items
+  end
 end
