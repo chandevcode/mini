@@ -6,7 +6,7 @@ class Admin::MenuItemsController < Admin::ApplicationController
     @menu_items = @q.result(distinct: true)
                .includes(:category)
                .order(created_at: :desc, id: :desc) # Stable sort
-               .page(params[:page])
+               .page(params[:page]).per(10)
   end
 
   def new

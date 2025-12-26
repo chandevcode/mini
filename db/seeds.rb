@@ -22,7 +22,7 @@ categories = [
 
 puts "Creating menu items..."
 
-10.times do
+30.times do
   category = categories.sample
 
   MenuItem.create!(

@@ -60,7 +60,15 @@
           <% end %>
         </tbody>
       </table>
-<%= paginate @menu_items %>
+
+      <div class="px-6 py-4 bg-gray-50 flex items-center justify-between">
+        <div class="text-sm text-gray-600">
+          <%= page_entries_info @menu_items %>
+        </div>
+        <div>
+          <%= paginate @menu_items %>
+        </div>
+      </div>
 
     </div>
   </div>
