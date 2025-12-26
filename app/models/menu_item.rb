@@ -1,7 +1,7 @@
 class MenuItem < ApplicationRecord
   belongs_to :category
 
- def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(auth_object = nil)
     %w[
       name
       price

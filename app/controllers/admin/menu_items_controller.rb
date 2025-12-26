@@ -3,7 +3,10 @@ class Admin::MenuItemsController < Admin::ApplicationController
 
   def index
     @q = MenuItem.ransack(params[:q])
-    @menu_items = @q.result.includes(:category).order(created_at: :desc)
+    @menu_items = @q.result(distinct: true)
+               .includes(:category)
+               .order(created_at: :desc, id: :desc) # Stable sort
+               .page(params[:page])
   end
 
   def new
@@ -28,23 +31,23 @@ class Admin::MenuItemsController < Admin::ApplicationController
     end
   end
 
-def edit
-end
+  def edit
+  end
 
-def destroy
-  @menu_item.destroy
-  redirect_to admin_menu_items_path, notice: "Menu item was Delete."
-end
+  def destroy
+    @menu_item.destroy
+    redirect_to admin_menu_items_path, notice: "Menu item was Delete."
+  end
 
-private
+  private
 
-def set_menu_item
-  @menu_item = MenuItem.find(params[:id]) if params[:id]
-  @menu_item ||= MenuItem.new
-end
+  def set_menu_item
+    @menu_item = MenuItem.find(params[:id]) if params[:id]
+    @menu_item ||= MenuItem.new
+  end
 
-# Only allow a list of trusted parameters through.
-def menu_item_params
-  params.expect(menu_item: [ :category_id, :name, :description, :price, :is_available ])
-end
+  # Only allow a list of trusted parameters through.
+  def menu_item_params
+    params.expect(menu_item: [ :category_id, :name, :description, :price, :is_available ])
+  end
 end
