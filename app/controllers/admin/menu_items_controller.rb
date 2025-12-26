@@ -31,6 +31,11 @@ class Admin::MenuItemsController < Admin::ApplicationController
 def edit
 end
 
+def destroy
+  @menu_item.destroy
+  redirect_to admin_menu_items_path, notice: "Menu item was Delete."
+end
+
 private
 
 def set_menu_item

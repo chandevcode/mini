@@ -45,17 +45,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_29_072953) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.datetime "created_at", null: false
-    t.string "description"
-    t.boolean "is_available"
-    t.string "name"
-    t.integer "price"
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
-  end
-
   create_table "menu_items", force: :cascade do |t|
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
@@ -106,7 +95,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_29_072953) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "items", "categories"
   add_foreign_key "menu_items", "categories"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "orders"

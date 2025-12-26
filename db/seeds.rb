@@ -6,8 +6,9 @@ puts "create USer..."
 
 User.create!(
   email_address: "test@mail.com",
-  password_digest: "password",
-  password_confirmation: "password"
+  password: "password123",
+  password_confirmation: "password123"
+
 )
 
 puts "Creating categories..."
@@ -29,7 +30,7 @@ puts "Creating menu items..."
     name: Faker::Food.dish,
     description: Faker::Food.description,
     price: rand(10_000..50_000),
-    is_available: [true, true, true, false].sample # 75% available
+    is_available: [ true, true, true, false ].sample # 75% available
   )
 end
 
