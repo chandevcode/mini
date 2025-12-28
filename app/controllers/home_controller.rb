@@ -4,6 +4,6 @@ class HomeController < ApplicationController
     @q = MenuItem.ransack(params[:q])
     # @menus = MenuItem.all
     @menus = @q.result.includes(:category).order(created_at: :desc)
-               .page(params[:page]).per(9)
+               .page(params[:page]).per(30)
   end
 end

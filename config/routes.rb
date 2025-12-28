@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  #resources :menu_items
+  # resources :menu_items
   get "home/index"
   resources :categories
-  #resources :orders, only: [:show]
+  # resources :orders, only: [:show]
 
 
   post "carts/add/:id", to: "carts#add", as: "add_to_cart"
@@ -15,5 +15,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :menu_items
+    resources :orders, only: [ :index, :show, :update ]
+    resources :categories
+    root "menu_items#index"
   end
 end

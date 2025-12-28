@@ -1,15 +1,23 @@
 class OrdersController < ApplicationController
+  def index
+    @q = Order.ransack(params[:q])
+    @orders = @q.result(distinct: true)
+      .order(created_at: :desc)
+      .page(params[:page])
+      .per(20)
+  end
+
   def create
     cart = session[:cart] || {}
 
     if cart.empty?
       redirect_to root_path, alert: "Your cart is empty" and return
     end
-    total_price = cart.sum { |_, item| item["qty"] * item["price"]}
+    total_price = cart.sum { |_, item| item["qty"] * item["price"] }
 
     order = Order.create!(total_price: total_price, status: "success")
 
-    #create each order item
+    # create each order item
     cart.each do |menu_item_id, item |
       OrderItem.create!(
         order: order,
@@ -21,7 +29,12 @@ class OrdersController < ApplicationController
 
     # clear cart
     session[:cart] = {}
-      flash[:notice] = "Transaction Success"
+    flash[:notice] = "Transaction Success"
     redirect_to root_path
+  end
+  def show
+    @order = Order.find(params[:id])
+    # Optional: Add authorization (e.g., only allow owner to view)
+    # redirect_to orders_path, alert: "Not authorized" unless @order.user == current_user
   end
 end
