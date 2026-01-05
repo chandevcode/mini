@@ -6,4 +6,8 @@ class Admin::OrdersController < Admin::ApplicationController
       .page(params[:page])
       .per(20)
   end
+
+  def show
+    @order = Order.find(params[:id])
+  end
 end

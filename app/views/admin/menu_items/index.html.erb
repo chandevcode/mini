@@ -1,17 +1,19 @@
 <div class="container mx-auto px-4 py-8">
-  <div class="flex justify-evenly items-center mb-6">
+  <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
     <h1 class="text-4xl font-bold text-gray-900">Menu Items</h1>
-    <!-- Search -->
-    <div class="mb-4">
-      <%= search_form_for @q, url: admin_menu_items_path, method: :get, class: "flex gap-2" do |f| %>
-        <%= f.search_field :name_cont,
-          class: "input input-bordered w-full" %>
+    <div class="flex flex-col md:flex-row items-center gap-4">
+      <div class="w-full md:w-auto">
+        <%= search_form_for @q, url: admin_menu_items_path, method: :get, class: "flex flex-col md:flex-row gap-2" do |f| %>
+          <%= f.search_field :name_cont,
+            placeholder: "Search menu items...",
+            class: "input input-bordered w-full md:w-64" %>
 
-        <%= f.submit "Search", class: "btn btn-primary" %>
-      <% end %>
+          <%= f.submit "Search", class: "btn btn-primary w-full md:w-auto" %>
+        <% end %>
+      </div>
+
+      <%= link_to "Add menu item", new_admin_menu_item_path, class: "btn btn-primary" %>
     </div>
-
-    <%= link_to "Add menu item", new_admin_menu_item_path, class: "btn btn-primary" %>
   </div>
 
   <div class="bg-white shadow-md rounded-lg overflow-hidden">

@@ -6,7 +6,7 @@
         Placed on <%= @order.created_at.strftime("%B %d, %Y at %I:%M %p") %>
       </p>
     </div>
-    <%= link_to "Back to Orders", orders_path, class: "btn btn-outline" %>
+    <%= link_to "Back to Orders", admin_orders_path, class: "btn btn-outline" %>
   </div>
 
   <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
@@ -47,20 +47,20 @@
             </tr>
           </thead>
           <tbody>
-            <% @order.order_items.each do |item| %>
+            <% @order.order_items.each do |order| %>
               <tr class="border-t">
                 <td class="px-4 py-3">
-                  <div class="font-medium"><%= item.menu_item.name %></div>
-                  <div class="text-sm text-gray-600"><%= item.menu_item.description %></div>
+                  <div class="font-medium"><%= order.menu_item.name %></div>
+                  <div class="text-sm text-gray-600"><%= order.menu_item.description %></div>
                 </td>
                 <td class="px-4 py-3">
-                  <%= number_to_currency(item.price.to_f / 100) %>
+                  <%= number_to_currency(order.price.to_f / 100) %>
                 </td>
                 <td class="px-4 py-3">
-                  <%= item.qty %>
+                  <%= order.qty %>
                 </td>
                 <td class="px-4 py-3 font-medium">
-                  <%= number_to_currency((item.price * item.qty).to_f / 100) %>
+                  <%= number_to_currency((order.price * order.qty).to_f / 100) %>
                 </td>
               </tr>
             <% end %>

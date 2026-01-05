@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :admin do
-    resources :menu_items
+    resources :menu_items, path: "menu"
     resources :orders, only: [ :index, :show, :update ]
     resources :categories
     root "menu_items#index"

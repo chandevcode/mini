@@ -17,46 +17,71 @@
     <div class="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <!-- Navbar -->
-        <nav class="navbar w-full bg-base-300">
-          <label for="my-drawer-4" aria-label="open sidebar" class="btn btn-square btn-ghost">
-            <!-- Sidebar toggle icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
-            </svg>
-          </label>
-          <div class="px-4">Admin</div>
-        </nav>
         <!-- Page content here -->
         <div class="p-4">
           <%= yield %>
         </div>
       </div>
 
-      <div class="drawer-side is-drawer-close:overflow-visible">
+      <div class="drawer-side">
         <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div class="flex min-h-full flex-col items-start bg-base-100 transition-all duration-300 ease-in-out drawer-open:w-64 w-16">
           <!-- Sidebar content here -->
           <ul class="menu w-full grow">
-            <!-- List item -->
-            <li>
-              <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                <!-- Home icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-
-                <span class="is-drawer-close:hidden">Homepage</span>
-              </button>
+            <!-- Homepage -->
+            <li class="tooltip tooltip-right" data-tip="Homepage">
+              <%= link_to root_path, class: "flex items-center gap-3 px-3 py-3 hover:bg-base-300 rounded-lg" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="size-5 flex-shrink-0">
+                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                  <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span class="opacity-0 w-0 drawer-open:opacity-100 drawer-open:w-auto transition-all duration-300 overflow-hidden whitespace-nowrap">Homepage</span>
+              <% end %>
             </li>
 
-            <!-- List item -->
-            <li>
-              <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                <!-- Settings icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                <span class="is-drawer-close:hidden">Settings</span>
-              </button>
+            <!-- Settings -->
+            <li class="tooltip tooltip-right" data-tip="Settings">
+              <%= link_to admin_orders_path, class: "flex items-center gap-3 px-3 py-3 hover:bg-base-300 rounded-lg" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="size-5 flex-shrink-0">
+                  <path d="M20 7h-9"></path>
+                  <path d="M14 17H5"></path>
+                  <circle cx="17" cy="17" r="3"></circle>
+                  <circle cx="7" cy="7" r="3"></circle>
+                </svg>
+                <span class="opacity-0 w-0 drawer-open:opacity-100 drawer-open:w-auto transition-all duration-300 overflow-hidden whitespace-nowrap">Settings</span>
+              <% end %>
+            </li>
+
+            <!-- Products -->
+            <li class="tooltip tooltip-right" data-tip="Products">
+              <%= link_to admin_menu_items_path, class: "flex items-center gap-3 px-3 py-3 hover:bg-base-300 rounded-lg" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 flex-shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                </svg>
+                <span class="opacity-0 w-0 drawer-open:opacity-100 drawer-open:w-auto transition-all duration-300 overflow-hidden whitespace-nowrap">Products</span>
+              <% end %>
+            </li>
+
+            <li class="tooltip tooltip-right" data-tip="Category">
+              <%= link_to admin_categories_path, class: "flex items-center gap-3 px-3 py-3 hover:bg-base-300 rounded-lg" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 flex-shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                </svg>
+                <span class="opacity-0 w-0 drawer-open:opacity-100 drawer-open:w-auto transition-all duration-300 overflow-hidden whitespace-nowrap">Category</span>
+              <% end %>
             </li>
           </ul>
+
+          <!-- Optional: Collapse button -->
+          <div class="p-4 w-full">
+            <label for="my-drawer-4" class="btn btn-ghost btn-sm w-full justify-start">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="opacity-0 w-0 drawer-open:opacity-100 drawer-open:w-auto transition-all duration-300 overflow-hidden whitespace-nowrap">Collapse</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
