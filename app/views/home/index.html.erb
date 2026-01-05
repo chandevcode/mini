@@ -21,23 +21,23 @@
         <!-- Menu Grid -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           <% @menus.each do |menu| %>
-            <div class="card bg-base-100 shadow hover:shadow-lg transition">
-              <div class="card-body p-4">
-                <h2 class="card-title text-base">
-                  <%= menu.name %>
-                </h2>
-                <p class="text-sm opacity-70">
-                Rp <%= number_to_currency(menu.price, unit: "", delimiter: ".") %>
-                </p>
+            <%= button_to add_to_cart_path(menu.id), 
+              class:"w-full", method: :post do %>
 
-                <div class="card-actions mt-3">
-                  <%= button_to "Add to Cart",
-                    add_to_cart_path(menu.id), 
-                    method: :post,
-                    class: "btn btn-primary btn-sm w-full" %>
+              <div class="card items-center bg-base-100 shadow hover:shadow-lg transition">
+                <div class="card-body p-4">
+                  <h2 class="card-title text-base">
+                    <%= menu.name %>
+                  </h2>
+                  <p class="text-sm opacity-70">
+                  Rp <%= number_to_currency(menu.price, unit: "", delimiter: ".") %>
+                  </p>
+
+                  <div class="card-actions mt-3">
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
 
