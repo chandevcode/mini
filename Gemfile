@@ -72,4 +72,4 @@ gem "pundit", "~> 2.5"
 gem "ransack", "~> 4.4"
 gem "kaminari", "~> 1.2"
 
-gem "jsbundling-rails", "~> 1.3"
+gem "importmap-rails", "~> 2.2"
