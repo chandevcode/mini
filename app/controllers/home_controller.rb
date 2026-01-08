@@ -5,5 +5,7 @@ class HomeController < ApplicationController
     # @menus = MenuItem.all
     @menus = @q.result.includes(:category).order(created_at: :desc)
                .page(params[:page]).per(30)
+
+    @categories = Category.all
   end
 end

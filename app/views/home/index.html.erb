@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-base-200">
+<div class="min-h-screen">
   <div class="container mx-auto px-4 py-6">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
@@ -6,39 +6,49 @@
       <div class="lg:col-span-2 space-y-4">
 
         <!-- Search -->
-        <div class="mb-4">
+        <div class="mt-4">
           <%= search_form_for @q, url: root_path, method: :get, class: "flex gap-2" do |f| %>
             <%= f.search_field :name_cont,
               class: "input input-bordered w-full" %>
 
             <%= f.submit "Search", class: "btn btn-primary" %>
           <% end %>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            <%= link_to "All", root_path, 
+              class: "btn #{params[:q].blank? ? 'btn-primary' : 'btn-outline'}" %>
+
+            <% @categories.each do |category| %>
+              <%= link_to category.name, 
+                root_path(q: { category_id_eq: category.id }),
+                class: "btn #{params.dig(:q, :category_id_eq).to_i == category.id ? 'btn-primary' : 'btn-outline'}" %>
+            <% end %>
+          </div>
         </div>
 
-        <%= link_to "Dashboard Order", admin_orders_path, class: "btn btn-ghost" %>
-
-
         <!-- Menu Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-          <% @menus.each do |menu| %>
-            <%= button_to add_to_cart_path(menu.id), 
-              class:"w-full", method: :post do %>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 
+                    max-h-[70vh] sm:max-h-none  
+                    overflow-y-auto  [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pr-2"> 
+                    <% @menus.each do |menu| %>
+                      <%= button_to add_to_cart_path(menu.id), 
+                        class:"w-full", method: :post do %>
 
-              <div class="card items-center bg-base-100 shadow hover:shadow-lg transition">
-                <div class="card-body p-4">
-                  <h2 class="card-title text-base">
-                    <%= menu.name %>
-                  </h2>
-                  <p class="text-sm opacity-70">
-                  Rp <%= number_to_currency(menu.price, unit: "", delimiter: ".") %>
-                  </p>
+                        <div class="card items-center bg-base-100 shadow hover:shadow-lg transition">
+                          <div class="card-body p-4">
+                            <h2 class="card-title text-base">
+                              <%= menu.name %>
+                            </h2>
+                            <p class="text-sm opacity-70">
+                            Rp <%= number_to_currency(menu.price, unit: "", delimiter: ".") %>
+                            </p>
 
-                  <div class="card-actions mt-3">
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
+                            <div class="card-actions mt-3">
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
         </div>
 
         <div class="mt-6">
@@ -61,7 +71,7 @@
                 <div class="mt-4 space-y-6">
                   <ul class="space-y-4">
                     <li class="flex items-center gap-4">
-                      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="size-16 rounded-sm object-cover">
+                      <%= image_tag "coffee.jpg", alt: "Coffee", class: "size-16 rounded-sm object-cover" %>
 
                       <div>
                         <h3 class="text-sm text-gray-900"><%= item["name"] %></h3>
