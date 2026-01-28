@@ -3,7 +3,20 @@ class Order < ApplicationRecord
   has_many :menu_items, through: :order_items
   belongs_to :user, optional: true
 
+  after_save :set_total_price
+
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "order_type", "status", "table_number", "total_price", "updated_at"]
+  end
+
+  def calculate_total
+    order_items.sum(&:subtotal)
+  end
+
+  private
+
+
+  def set_total_price
+    self.total_price = calculate_total
   end
 end
