@@ -15,10 +15,10 @@
                 <%= image_tag "coffee.jpg", alt: "Coffee", class: "size-16 rounded-sm object-cover" %>
 
                 <div>
-                  <h3 class="text-sm text-gray-900"><%= item["name"] %></h3>
-                  <h4 class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                  <h2 class="text-md font-bold text-gray-900"><%= item["name"] %></h2>
+                  <h2 class="mt-0.5 space-y-px text-md text-gray-800">
                     Rp <%= item["price"] * item["qty"] %> 
-                  </h4>
+                  </h2>
                 </div>
 
                 <div class="flex flex-1 items-center justify-end gap-2">
