@@ -70,6 +70,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_29_072953) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "order_type"
+    t.string "payment_method"
     t.string "status"
     t.integer "table_number"
     t.integer "total_price"

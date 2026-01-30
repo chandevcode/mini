@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     end
     total_price = cart.sum { |_, item| item["qty"] * item["price"] }
 
-    order = Order.create!(total_price: total_price, status: "success")
+    order = Order.create!(total_price: total_price, status: "success", table_number: params[:table_number], order_type: params[:order_type], payment_method: params[:payment_method])
 
     # create each order item
     cart.each do |menu_item_id, item |

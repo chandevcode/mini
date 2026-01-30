@@ -6,8 +6,8 @@ puts "Create Use..."
 
 User.create!(
   email_address: "test@mail.com",
-  password: "password123",
-  password_confirmation: "password123"
+  password: "admin123",
+  password_confirmation: "admin123"
 
 )
 
@@ -21,7 +21,7 @@ categories = [
 
 puts "Creating menu items..."
 
-30.times do
+25.times do
   category = categories.sample
 
   MenuItem.create!(
