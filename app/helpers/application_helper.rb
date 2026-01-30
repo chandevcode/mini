@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def cart_total
+    return 0 unless session[:cart].present?
+    session[:cart].sum { |_, item| item["qty"] * item["price"] }
+  end
+
+  def format_cart_total
+    number_to_currency(cart_total, unit: "Rp ", separator: ".", delimiter: ",", precision: 0)
+  end
   def flash_icon(type)
     case type.to_sym
     when :success, :notice

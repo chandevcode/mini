@@ -77,6 +77,30 @@
             </div>
           </div>
 
+          <div class="mb-4">
+            <h3 class="font-semibold mb-2">Dine In / Take Away</h3>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <%= f.radio_button :order_type, "dine_in", class: "radio radio-primary", checked: true %>
+                <span class="label-text">Dine In</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer">
+                <%= f.radio_button :order_type, "take_away", class: "radio radio-primary" %>
+                <span class="label-text">Take Away</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold mb-2">Total</h3>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <h1 class="text-lg font-bold"> <%= format_cart_total %></h1>
+              </label>
+            </div>
+          </div>
+
           <%= f.submit "Checkout", class: "btn btn-primary w-full" %>
         <% end %>                      
 

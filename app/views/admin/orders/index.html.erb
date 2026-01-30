@@ -58,7 +58,8 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm font-semibold text-gray-900">
-                    <%= number_to_currency(order.total_price.to_f / 100) %>
+                    <%= number_to_currency(order.total_price, unit: "Rp ", separator: ".", delimiter: ",", precision: 0)%>
+
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
