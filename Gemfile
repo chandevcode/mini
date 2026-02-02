@@ -62,7 +62,7 @@ end
 
 gem "tailwindcss-rails", "~> 4.4"
 
-gem "openssl", "~> 3.3"
+gem "openssl", "~> 4.0"
 
 gem "faker", "~> 3.5"
 
