@@ -25,7 +25,9 @@
   </head>
 
   <body>
+    <% if authenticated? %>
     <%= render 'layouts/sidebar' %>
+  <% end %>
     <%= render 'layouts/flash' %>
     <%= yield %>
   </body>
