@@ -1,0 +1,80 @@
+<%# app/views/admin/dashboard/index.html.erb %>
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8">Dashboard Reports</h1>
+  
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="stat bg-base-100 shadow rounded-lg p-4">
+      <div class="stat-title">Total Products</div>
+      <div class="stat-value text-3xl font-bold"><%= @orders.count %></div>
+    </div>
+    
+    <div class="stat bg-base-100 shadow rounded-lg p-4">
+      <div class="stat-title">Total Categories</div>
+      <div class="stat-value text-3xl font-bold"><%= @categories.count %></div>
+    </div>
+    
+    <div class="stat bg-base-100 shadow rounded-lg p-4">
+      <div class="stat-title">Total Revenue (30d)</div>
+      <div class="stat-value text-3xl font-bold"> 
+        <%= number_to_currency(@sales_by_day.values.sum, unit: "Rp ", separator: ".", delimiter: ",", precision: 0) %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+    <!-- Line Chart: Products Added Over Time -->
+    <div class="bg-base-100 shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Products Added (Last 30 Days)</h2>
+      <%= line_chart @sales_by_day, 
+        colors: ["#3B82F6"],
+        curve: true,
+        height: "300px" %>
+    </div>
+
+    <!-- Bar Chart: Products by Category -->
+    <div class="bg-base-100 shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Products by Category</h2>
+      <%= bar_chart @orders_by_category,
+        colors: ["#10B981"],
+        height: "300px" %>
+    </div>
+
+    <!-- Revenue Chart (if you have price) -->
+    <% if @revenue_by_day.present? %>
+      <div class="bg-base-100 shadow rounded-lg p-6 lg:col-span-2">
+        <h2 class="text-xl font-semibold mb-4">Revenue Overview</h2>
+        <%= area_chart @revenue_by_day,
+          colors: ["#8B5CF6"],
+          height: "350px" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Top Products Table -->
+  <div class="mt-8 bg-base-100 shadow rounded-lg p-6">
+    <h2 class="text-xl font-semibold mb-4">Recent Products</h2>
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @top_orders.each do |order| %>
+          <tr>
+            <%# <td><%= order.name %></td> %>
+            <%# <td><%= order.category&.name %></td> %>
+            <%# <td><%= number_to_currency(order.price) if order.respond_to?(:price) %></td> %>
+            <%# <td><%= time_ago_in_words(order.created_at) %> ago</td> %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

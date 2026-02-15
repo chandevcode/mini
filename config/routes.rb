@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :menu_items, path: "menu"
     resources :orders, only: [ :index, :show, :update ]
     resources :categories
+    resources :dashboard, only: [ :index ]
+
     root "menu_items#index"
   end
 end

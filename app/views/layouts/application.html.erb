@@ -20,14 +20,16 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%#= javascript_include_tag "chartkick" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <% if authenticated? %>
-    <%= render 'layouts/sidebar' %>
-  <% end %>
+      <%= render 'layouts/sidebar' %>
+    <% end %>
     <%= render 'layouts/flash' %>
     <%= yield %>
   </body>

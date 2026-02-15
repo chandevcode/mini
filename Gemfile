@@ -72,3 +72,6 @@ gem "ransack", "~> 4.4"
 gem "kaminari", "~> 1.2"
 
 gem "importmap-rails", "~> 2.2"
+
+gem "chartkick", "~> 5.2"
+gem "groupdate", "~> 6.7"
